@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.bbcron</groupId>
+  <artifactId>${project.name}</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>${project.name}</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.bbcron.com</url>
+
+  <scm>
+    <connection>scm:git:https://github.com/3nauk/bbcron-user-service</connection>
+    <developerConnection>scm:git:https://github.com/3nauk/bbcron-user-service
+    </developerConnection>
+    <url>https://github.com/3nauk/bbcron-user-service</url>
+  </scm>
+
+  <repositories>
+    <repository>
+      <id>github</id>
+      <name>GitHub OWNER Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/3nauk/maven-site</url>
+    </repository>
+    <repository>
+      <id>mvnCentral</id>
+      <name>Mvn Central</name>
+      <url>https://repo1.maven.org/maven2/</url>
+    </repository>
+  </repositories>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.2.4.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <properties>
+    <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
+    <springdoc.version>1.2.32</springdoc.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>11</java.version>
+    <hadoop.version>3.2.0</hadoop.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <encoding>UTF-8</encoding>
+    <junit-jupiter.version>5.5.2</junit-jupiter.version>
+    <sonar.jacoco.reportPath>target/coverage-reports/jacoco-ut.exec</sonar.jacoco.reportPath>
+    <sonar.junit.reportPaths>target/surefire-reports</sonar.junit.reportPaths>
+    <sonar.sources>src/main</sonar.sources>
+    <sonar.tests>src/test</sonar.tests>
+  </properties>
+
+  <!-- Piensa si lo eliminamos y lo creamos a partir del actio -->
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/3nauk/maven-site</url>
+    </repository>
+  </distributionManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.bnauk.bbcron</groupId>
+      <artifactId>bbcron-api</artifactId>
+      <version>0.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.12</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>2.0.0.Final</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-config</artifactId>
+      <version>2.2.2.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+      <version>2.2.1.RELEASE</version>
+      <exclusions>
+        <exclusion>
+          <groupId>javax.ws.rs</groupId>
+          <artifactId>jsr311-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>2.2.6.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <version>2.2.6.RELEASE</version>
+    </dependency>
+
+    <!-- SpringDoc -->
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>${springdoc.version}</version>
+    </dependency>
+
+    <!-- Security -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+
+
+    <!-- PostgreSQL Database Developer  -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.2.9</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.modelmapper</groupId>
+      <artifactId>modelmapper</artifactId>
+      <version>2.3.5</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>5.2.6.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>javax.ws.rs-api</artifactId>
+      <version>2.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>net.sf.ehcache</groupId>
+      <artifactId>ehcache-core</artifactId>
+      <version>2.6.11</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt</artifactId>
+      <version>0.9.1</version>
+    </dependency>
+
+    <!-- Test -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.junit.vintage</groupId>
+          <artifactId>junit-vintage-engine</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>3.6.28</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- junit 5 -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit-jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-test</artifactId>
+      <version>5.2.1.RELEASE</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-runner</artifactId>
+      <version>1.7.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
+      <version>5.2.0</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+      <plugins>
+        <!-- direct usage: https://github.com/jeluard/maven-plantuml-plugin
+              mvn clean com.github.jeluard:plantuml-maven-plugin:generate -DGRAPHVIZ_DOT=PATH_DOT_BIN\dot.exe
+         -->
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+        <plugin>
+          <groupId>com.github.jeluard</groupId>
+          <artifactId>plantuml-maven-plugin</artifactId>
+          <version>1.2</version>
+          <configuration>
+            <outputInSourceDirectory>true</outputInSourceDirectory>
+            <sourceFiles>
+              <directory>${basedir}</directory>
+              <includes>
+                <include>src/main/plantuml/**/*.puml</include>
+              </includes>
+            </sourceFiles>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>net.sourceforge.plantuml</groupId>
+              <artifactId>plantuml</artifactId>
+              <version>1.2020.23</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19.1</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-surefire-provider</artifactId>
+            <version>1.0.1</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>9</source>
+            <target>9</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.6</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>report</id>
+              <phase>prepare-package</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>3.0.0</version>
+          <configuration>
+            <mainClass>com.example.Main</mainClass>
+          </configuration>
+        </plugin>
+      </plugins>
+  </build>
+</project>

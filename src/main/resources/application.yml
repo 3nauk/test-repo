@@ -1,0 +1,61 @@
+server:
+  port: 8888
+  #port: 0
+springdoc:
+  version: v1
+  description: BBCron User
+  api-docs:
+    path: /api-docs
+
+spring:
+  application:
+    name: bbcron_user_service
+  jpa:
+    hibernate:
+      default_schema: ${DEFAULT_ACLS_SCHEMA:bbcron}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+      ddl-auto: vaidate
+  datasource:
+    #url: ${USER_BBDD:jdbc:postgresql://localhost:5432/bbcron?currentSchema=bbcron_user}
+    url: ${USER_BBDD:jdbc:postgresql://localhost:5432/bbcron_user}
+    username: ${POSTGRES_DB:bbcron}
+    password: ${POSTGRES_PASSWORD:bbcron}
+    ## default connection pool
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    user: ${POSTGRES_USER:bbcron}
+    password: ${POSTGRES_PASSWORD:bbcron}
+    #schemas: ${POSTGRES_DB:bbcron_user}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8765/eureka}
+  instance:
+    preferIpAddress: true
+
+postgresql:
+  url: ${POSTGRESQL_URL:192.168.1.45}
+  port: ${POSTGRESQL_PORT:5432}
+  dbName: ${POSTGRESQL_DBNAME:bbcron-user}
+  user: ${POSTGRESQL_USER:bbcron}
+  pwd: ${POSTGRESQL_PWD:bbcron}
+
+keycloak:
+  auth-server-url: http://localhost:8180/auth
+  realm: bbcron
+  resource: bbcron-user
+  public-client: true
+  bbcron:
+    client-id: bbcron-client
+    client-secret: c3e9cc84-c446-441e-a0fa-f76813856ab2
+    username: bbcron
+    password: bbcron
+    organization: ${default_organization:ORGANIZATION_DEFAULT}
+    requiredActions: "Verify Email"
